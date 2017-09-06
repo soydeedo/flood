@@ -3,13 +3,11 @@
 const archiver = require('archiver');
 const fs = require('fs');
 const path = require('path');
-const rimraf = require('rimraf');
-const util = require('util');
 
 const ClientRequest = require('./ClientRequest');
 const clientResponseUtil = require('../util/clientResponseUtil');
 const clientSettingsMap = require('../../shared/constants/clientSettingsMap');
-const formatUtil = require('../../shared/util/formatUtil');
+const settings = require('./settings');
 const TemporaryStorage = require('./TemporaryStorage');
 const torrentFilePropsMap = require('../../shared/constants/torrentFilePropsMap');
 const torrentPeerPropsMap = require('../../shared/constants/torrentPeerPropsMap');
@@ -51,6 +49,8 @@ var client = {
 
       fileRequest.send();
     });
+
+    settings.set({id: 'startTorrentsOnLoad', data: start});
   },
 
   addUrls: (data, callback) => {
@@ -65,6 +65,8 @@ var client = {
     request.addURLs({urls, path, isBasePath, start, tags});
     request.onComplete(callback);
     request.send();
+
+    settings.set({id: 'startTorrentsOnLoad', data: start});
   },
 
   checkHash: (hashes, callback) => {
