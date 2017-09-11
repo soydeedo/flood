@@ -3,7 +3,7 @@ import _ from 'lodash';
 import classNames from 'classnames';
 import React from 'react';
 
-import ContextMenu from '../general/ContextMenu';
+import GlobalContextMenuMountPoint from '../general/GlobalContextMenuMountPoint';
 import CustomScrollbars from '../general/CustomScrollbars';
 import EventTypes from '../../constants/EventTypes';
 import Files from '../icons/Files';
@@ -184,7 +184,7 @@ class TorrentListContainer extends React.Component {
   }
 
   getContextMenuItems(torrent) {
-    let clickHandler = this.handleContextMenuItemClick;
+    const clickHandler = this.handleContextMenuItemClick;
 
     return [{
       action: 'start',
@@ -621,7 +621,7 @@ class TorrentListContainer extends React.Component {
           ref={ref => this.horizontalScrollRef = ref}>
           <div className="torrent__list__wrapper"
             style={listWrapperStyle}>
-            <ContextMenu id="torrent-list-item" />
+            <GlobalContextMenuMountPoint id="torrent-list-item" />
             {torrentListHeading}
             {content}
           </div>
