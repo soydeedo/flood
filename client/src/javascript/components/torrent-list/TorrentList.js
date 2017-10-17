@@ -1,6 +1,6 @@
 import {defineMessages, FormattedMessage, injectIntl} from 'react-intl';
 import _ from 'lodash';
-import classNames from 'classnames';
+import Dropzone from 'react-dropzone';
 import React from 'react';
 
 import GlobalContextMenuMountPoint from '../general/GlobalContextMenuMountPoint';
